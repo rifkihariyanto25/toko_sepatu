@@ -17,7 +17,7 @@ if (!$produk) {
 
 <head>
     <title><?php echo $produk['nama']; ?> - Detail Produk</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css?v=3">
 </head>
 
 <body>
@@ -25,7 +25,7 @@ if (!$produk) {
     <!-- NAVBAR -->
     <div class="navbar">
         <div class="container">
-            <a href="index.php" style="text-decoration:none;color:#111">← Kembali</a>
+            <a href="index.php">← Kembali</a>
             <div>
                 <a href="cart.php">🛒 Cart
                     <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
@@ -47,19 +47,19 @@ if (!$produk) {
             </div>
         <?php endif; ?>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+        <div class="detail-layout">
 
             <div>
-                <?php if ($produk['gambar'] && file_exists("../assets/sepatu/" . $produk['gambar'])): ?>
-                    <img src="../assets/sepatu/<?php echo $produk['gambar']; ?>" style="width:100%;border-radius:16px">
-                <?php else: ?>
-                    <div style="width:100%;height:400px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;color:#999;font-size:24px;border-radius:16px">
-                        No Image Available
-                    </div>
-                <?php endif; ?>
+                <?php
+                $dummy_image = 'dummy-' . (($produk['id'] - 1) % 4 + 1) . '.svg';
+                $image_path = $produk['gambar'] && file_exists("../assets/sepatu/" . $produk['gambar'])
+                    ? $produk['gambar']
+                    : $dummy_image;
+                ?>
+                <img src="../assets/sepatu/<?php echo htmlspecialchars($image_path); ?>" class="detail-image" alt="<?php echo htmlspecialchars($produk['nama']); ?>">
             </div>
 
-            <div>
+            <div class="detail-copy">
                 <h2><?php echo $produk['nama']; ?></h2>
                 <p class="price">Rp <?php echo number_format($produk['harga'], 0, ',', '.'); ?></p>
                 <p style="margin:20px 0">
@@ -72,8 +72,7 @@ if (!$produk) {
                         <input type="hidden" name="aksi" value="tambah_cart">
                         <input type="hidden" name="id_produk" value="<?php echo $produk['id']; ?>">
                         <div style="display:flex;gap:10px;align-items:center">
-                            <input type="number" name="qty" value="1" min="1" max="<?php echo $produk['stok']; ?>"
-                                style="width:80px;padding:10px;border:1px solid #ddd;border-radius:8px">
+                            <input type="number" name="qty" value="1" min="1" max="<?php echo $produk['stok']; ?>">
                             <button class="btn">Tambah ke Keranjang</button>
                         </div>
                     </form>

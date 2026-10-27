@@ -31,7 +31,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 
     <div class="navbar">
         <div class="container">
-            <a href="index.php" style="text-decoration:none;color:#111">← Belanja Lagi</a>
+            <a href="index.php">← Belanja Lagi</a>
             <?php if (isset($_SESSION['id_user'])): ?>
                 <a href="pesanan.php">📦 Pesanan Saya</a>
             <?php endif; ?>
@@ -42,18 +42,18 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         <h2>Keranjang Belanja</h2>
 
         <?php if (isset($_GET['success']) && $_GET['success'] == 'tambah'): ?>
-            <div style="background:#4CAF50;color:white;padding:15px;border-radius:8px;margin:20px 0">
+            <div class="notice">
                 ✓ Produk berhasil ditambahkan ke keranjang!
             </div>
         <?php endif; ?>
 
         <?php if (empty($cart_items)): ?>
-            <div class="card">
+            <div class="card table-card">
                 <p style="text-align:center;color:#666">Keranjang Anda kosong</p>
                 <a href="index.php" class="btn" style="display:block;text-align:center;margin-top:20px">Mulai Belanja</a>
             </div>
         <?php else: ?>
-            <div class="card">
+            <div class="card table-card">
                 <form action="../proses/proses.php" method="POST">
                     <input type="hidden" name="aksi" value="update_cart">
 

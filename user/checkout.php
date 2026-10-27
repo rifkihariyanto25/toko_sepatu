@@ -42,17 +42,17 @@ foreach ($_SESSION['cart'] as $id_produk => $qty) {
 
     <div class="navbar">
         <div class="container">
-            <a href="cart.php" style="text-decoration:none;color:#111">← Kembali ke Cart</a>
+            <a href="cart.php">← Kembali ke Cart</a>
         </div>
     </div>
 
     <div class="container" style="margin-top:40px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px">
+        <div class="detail-layout" style="align-items:start">
 
             <!-- FORM CHECKOUT -->
             <div>
                 <h2>Data Pengiriman</h2>
-                <form action="../proses/proses.php" method="POST" class="form-box">
+                <form action="../proses/proses.php" method="POST" class="form-box" style="width:100%;margin:20px 0 0">
                     <input type="hidden" name="aksi" value="checkout">
 
                     <input type="text" name="nama" placeholder="Nama Lengkap" required

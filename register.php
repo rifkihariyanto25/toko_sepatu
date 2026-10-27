@@ -9,10 +9,11 @@
 <body>
 
     <div class="form-box">
-        <h2>Daftar Akun</h2>
+        <div class="eyebrow" style="text-align:center">Start your journey</div>
+        <h2>Buat akun baru</h2>
 
         <?php if (isset($_GET['error'])): ?>
-            <p style="color:red;text-align:center">
+            <p class="notice notice-error">
                 <?php
                 if ($_GET['error'] == 'email') echo 'Email sudah digunakan!';
                 elseif ($_GET['error'] == 'password') echo 'Password tidak cocok!';
@@ -22,7 +23,7 @@
         <?php endif; ?>
 
         <?php if (isset($_GET['success'])): ?>
-            <p style="color:green;text-align:center">Registrasi berhasil! Silakan login.</p>
+            <p class="notice">Registrasi berhasil! Silakan login.</p>
         <?php endif; ?>
 
         <form action="proses/proses.php" method="POST">

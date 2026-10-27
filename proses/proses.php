@@ -288,6 +288,23 @@ if ($aksi == 'login') {
 }
 
 /* =====================
+   UPDATE STATUS PESANAN (ADMIN)
+===================== */ elseif ($aksi == 'update_status_pesanan') {
+
+    if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
+        header("Location: ../login.php");
+        exit;
+    }
+
+    $order_id = (int)$_POST['order_id'];
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
+
+    mysqli_query($conn, "UPDATE orders SET status='$status' WHERE id='$order_id'");
+
+    header("Location: ../admin/pesanan_detail.php?id=$order_id&success=update");
+}
+
+/* =====================
    DEFAULT
 ===================== */ else {
     echo "Aksi tidak dikenal";

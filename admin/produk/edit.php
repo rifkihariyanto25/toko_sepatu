@@ -8,6 +8,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
     exit;
 }
 
+// Cek apakah ada parameter id
+if (!isset($_GET['id'])) {
+    header("Location: index.php");
+    exit;
+}
+
 // Ambil data produk
 $id = (int)$_GET['id'];
 $query = mysqli_query($conn, "SELECT * FROM produk WHERE id='$id'");

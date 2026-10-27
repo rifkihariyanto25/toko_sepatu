@@ -9,18 +9,19 @@
 <body>
 
     <div class="form-box">
-        <h2>Login</h2>
+        <div class="eyebrow" style="text-align:center">Welcome back</div>
+        <h2>Masuk ke akun</h2>
 
         <?php if (isset($_GET['error'])): ?>
-            <p style="color:red;text-align:center">Email atau password salah!</p>
+            <p class="notice notice-error">Email atau password salah!</p>
         <?php endif; ?>
 
         <?php if (isset($_GET['checkout'])): ?>
-            <p style="color:orange;text-align:center">Silakan login untuk checkout</p>
+            <p class="notice" style="background:#fff8df;color:#8f7115">Silakan login untuk checkout</p>
         <?php endif; ?>
 
         <?php if (isset($_GET['register']) && $_GET['register'] == 'success'): ?>
-            <p style="color:green;text-align:center">✓ Registrasi berhasil! Silakan login.</p>
+            <p class="notice">✓ Registrasi berhasil! Silakan login.</p>
         <?php endif; ?>
 
         <form action="proses/proses.php" method="POST">
